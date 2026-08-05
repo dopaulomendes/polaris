@@ -1,0 +1,510 @@
+:root {
+    --bg-color: #0b0b13; /* Fundo azul/preto muito escuro */
+    --card-bg: #151522;  /* Fundo secundário para cartões */
+    --primary: #FFD700;  /* Destaque Amarelo */
+    --text-main: #ffffff;
+    --text-muted: #a0a0b5;
+}
+
+/* Reset & Base */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    line-height: 1.6; 
+    position: relative; 
+}
+
+/* ===== MARCA D'ÁGUA NO FUNDO (SEU SÍMBOLO SEM FUNDO) ===== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    /* Substitua pelo nome exato do seu arquivo caso seja diferente */
+    background-image: 
+        url('triangulo-sem-fundo.png'),
+        url('triangulo-sem-fundo.png'),
+        url('triangulo-sem-fundo.png');
+    background-position: 5% 15%, 85% 60%, 40% 90%;
+    background-size: 350px, 200px, 450px; 
+    background-repeat: no-repeat;
+    opacity: 0.05; /* Transparência sutil */
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+/* Menu de Navegação Superior */
+nav { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 20px 5%; 
+    background: rgba(11, 11, 19, 0.95); 
+    backdrop-filter: blur(10px); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1000; 
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1); 
+}
+
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 900; 
+    color: var(--text-main); 
+    text-decoration: none; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+}
+
+.logo span { 
+    color: var(--primary); 
+}
+
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+}
+
+.nav-links a { 
+    color: var(--text-main); 
+    text-decoration: none; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    transition: color 0.3s; 
+}
+
+.nav-links a:hover { 
+    color: var(--primary); 
+}
+
+/* Seção Hero (Início) - Ajustado para não ser engolido pelo menu */
+section#inicio.hero { 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    padding-top: 180px !important; /* Força o empurrão para baixo do menu */
+    padding-bottom: 50px;
+    position: relative; 
+    overflow: hidden; 
+    border-top: none !important; /* Força a remoção da linha superior */
+}
+
+.hero-bg-text { 
+    position: absolute; 
+    font-size: 20vw; 
+    font-weight: 900; 
+    color: rgba(255, 255, 255, 0.02); 
+    top: 55%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    white-space: nowrap; 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+.hero-content { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 100%; 
+    z-index: 1; 
+}
+
+.hero-text { 
+    max-width: 40%; 
+}
+
+.hero-text h2 { 
+    font-size: 1rem; 
+    color: var(--primary); 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    margin-bottom: 15px; 
+}
+
+.hero-text h1 { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    line-height: 1.1; 
+    margin-bottom: 20px; 
+}
+
+.hero-text p { 
+    color: var(--text-muted); 
+    margin-bottom: 35px; 
+    font-size: 1.1rem; 
+    max-width: 90%; 
+}
+
+.btn { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px; 
+    background: var(--primary); 
+    color: #0b0b13; 
+    padding: 15px 35px; 
+    text-decoration: none; 
+    font-weight: 700; 
+    border-radius: 50px; 
+    text-transform: uppercase; 
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease; 
+    border: 2px solid var(--primary);
+}
+
+.btn:hover { 
+    background: transparent; 
+    color: var(--primary);
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+}
+/* Texto diminui para liberar espaço para a foto */
+.hero-text { 
+    max-width: 40%; 
+}
+
+/* Container da Imagem - Limpo */
+.hero-image { 
+    width: 55%; 
+    background: transparent; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Precisamos devolver isso para o degradê se prender à foto */
+}
+
+/* A sua foto */
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: block;
+}
+
+/* O novo Efeito de Fusão (Surgindo do escuro) */
+.hero-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+   /* Removemos o background com linear-gradient e usamos sombra interna */
+    background: transparent;
+   /* Aqui está a mágica mais intensa: */
+    box-shadow: inset 0 0 80px 30px rgba(11, 11, 19, 1);
+    pointer-events: none; 
+}
+/* Configurações Gerais das Seções */
+section { 
+    padding: 100px 10%; 
+    position: relative; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+.section-title { 
+    font-size: 2.2rem; 
+    font-weight: 900; 
+    margin-bottom: 50px; 
+    text-transform: uppercase; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.section-title::before { 
+    content: ''; 
+    display: block; 
+    width: 40px; 
+    height: 4px; 
+    background: var(--primary); 
+    border-radius: 2px;
+}
+
+/* Seção Sobre / Expertise */
+.about-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 60px; 
+    align-items: flex-start; /* Mudamos de 'center' para 'flex-start' */
+}
+.about-text p { 
+    color: var(--text-muted); 
+    margin-bottom: 20px; 
+    font-size: 1.05rem; 
+}
+
+.features { 
+    display: flex; 
+    gap: 20px; 
+    margin-top: 40px; 
+    flex-wrap: wrap; 
+}
+
+.feature-item { 
+    background: var(--card-bg); 
+    padding: 20px; 
+    border-radius: 12px; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    gap: 15px; 
+    border: 1px solid rgba(255,215,0,0.05); 
+    flex: 1 1 calc(50% - 20px); 
+    text-align: center;
+    transition: 0.3s;
+}
+
+.feature-item:hover { 
+    border-color: var(--primary); 
+    transform: translateY(-5px); 
+}
+
+.feature-item i { 
+    color: var(--primary); 
+    font-size: 2rem; 
+}
+
+.feature-item span { 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+.about-img { 
+    width: 100%; 
+    aspect-ratio: 4/3; 
+    background: var(--card-bg); 
+    border-radius: 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Seção Áudio - Organizados em 1 coluna (empilhados) */
+.audio-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* Força a ter apenas 1 coluna */
+    gap: 20px; /* Reduzido o espaço entre os players */
+    max-width: 900px; /* Limita a largura para ficar parecido com a sua referência */
+    margin: 0 auto; /* Centraliza na tela */
+}
+
+/* O container do SoundCloud */
+.soundcloud-embed { 
+    width: 100%; 
+    height: 166px; /* Altura exata do player clássico retangular */
+    background: transparent; 
+    border-radius: 0; /* O player já tem seus próprios cantos */
+    border: none; 
+    overflow: hidden; 
+    padding: 0;
+}
+/* Seção Vídeos Organizados em 1 coluna (empilhados) */
+.video-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* Força a ter apenas 1 coluna */
+    gap: 40px; 
+    max-width: 800px; /* Limita a largura para o vídeo não ficar absurdamente gigante na tela do PC */
+    margin: 0 auto; /* Centraliza a coluna de vídeos no meio da tela */
+}
+
+/* O container do vídeo */
+.video-embed { 
+    width: 100%; 
+    aspect-ratio: 16/9; /* Mantém a proporção de cinema do YouTube */
+    background: var(--card-bg); 
+    border-radius: 15px; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    color: var(--text-muted); 
+    border: none; /* Removi a borda tracejada para ficar limpo com o vídeo rodando */
+    overflow: hidden;
+}
+
+/* Seção Galeria */
+.gallery-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+}
+
+.gallery-item { 
+    aspect-ratio: 1/1; 
+    background: var(--card-bg); 
+    border-radius: 10px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: var(--text-muted); 
+    transition: 0.3s; 
+    cursor: pointer;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.gallery-item:hover { 
+    transform: scale(1.03); 
+    z-index: 2; 
+    border: 1px solid var(--primary); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+}
+
+/* Rodapé / Contato */
+footer { 
+    padding: 100px 10%; 
+    background: #07070a; 
+    text-align: center; 
+    border-top: 1px solid rgba(255, 215, 0, 0.1); 
+}
+
+.footer-content { 
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+
+.footer-content p { 
+    color: var(--text-muted); 
+    margin-bottom: 40px; 
+    font-size: 1.1rem; 
+}
+
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin: 40px 0; 
+}
+
+.social-links a { 
+    width: 55px; 
+    height: 55px; 
+    background: var(--card-bg); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50%; 
+    color: var(--text-main); 
+    text-decoration: none; 
+    font-size: 1.3rem; 
+    transition: all 0.3s; 
+    border: 1px solid rgba(255,215,0,0.1); 
+}
+
+.social-links a:hover { 
+    background: var(--primary); 
+    color: #0b0b13; 
+    transform: translateY(-3px); 
+}
+
+.copyright { 
+    color: #555; 
+    font-size: 0.85rem; 
+    margin-top: 50px; 
+}
+
+/* ===== RESPONSIVIDADE (Tablets e Celulares) ===== */
+@media (max-width: 992px) {
+    .hero-content, .about-grid { 
+        flex-direction: column; 
+        text-align: center; 
+    }
+    
+    .hero-text { 
+        max-width: 100%; 
+        margin-bottom: 50px; 
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-image { 
+        width: 100%; 
+    }
+    
+    .section-title { 
+        justify-content: center; 
+    }
+    
+    .section-title::before { 
+        display: none; 
+    }
+    
+    .nav-links { 
+        display: none; /* Menu escondido no mobile para simplificar */
+    } 
+    
+    .video-grid { 
+        grid-template-columns: 1fr; 
+    }
+}
+/* Botão de Contato destacado no Menu */
+.nav-links .btn-nav {
+    background: var(--primary);
+    color: #0b0b13;
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.nav-links .btn-nav:hover {
+    background: transparent;
+    color: var(--primary);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+.soundcloud-embed { 
+    width: 100%; 
+    min-height: 300px; /* Ajustado para a arte do SoundCloud Visual */
+    background: transparent; 
+    border-radius: 10px; 
+    border: none; /* Remove a borda tracejada */
+    overflow: hidden; /* Garante que os cantos fiquem arredondados */
+    padding: 0;
+}
+.about-img { 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: transparent;
+    border: none;
+    margin-top: 30px; /* É AQUI QUE VOCÊ PUXA PARA BAIXO! Se precisar descer mais, aumente para 40px, 60px... */
+}
+
+/* O restante da imagem continua igual para manter as bordas e sombra */
+.about-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: block;
+}

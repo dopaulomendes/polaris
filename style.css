@@ -98,10 +98,11 @@ nav {
 section#inicio.hero { 
     min-height: 100vh; 
     display: flex; 
-    align-items: stretch; /* Faz a área interna esticar do topo até o chão */
-    padding: 140px 10% 0 10% !important; /* O zero (0) aqui tira o espaço de baixo, colando a foto */
+    align-items: stretch; 
+    padding: 140px 10% 0 10% !important; 
     position: relative; 
-    overflow: hidden; 
+    overflow: visible; /* MUDANÇA: 'visible' permite que o texto desça para a próxima seção */
+    z-index: 2; /* MUDANÇA: Garante que o texto fique por cima do fundo da seção de baixo */
     border-top: none !important; 
     background-color: #FFD700; 
 }
@@ -194,19 +195,26 @@ section#inicio.hero {
     display: block;
 }
 
-/* ===== NOVO: TEXTO GIGANTE DE FUNDO ===== */
+/* ===== TEXTO GIGANTE DE FUNDO (CORTADO E DUAS CORES) ===== */
 .hero-bottom-text {
     position: absolute;
-    bottom: -4vw; /* Corta a base do texto de propósito */
-    left: 5%; /* Margem lateral */
-    font-size: 14vw; /* Tamanho gigante */
+    bottom: 0; /* Alinha na linha limite da seção amarela */
+    left: 5%; 
+    transform: translateY(50%); /* Empurra exatamente 50% do texto para a seção de baixo */
+    font-size: 15vw; /* Letra ainda maior para preencher bem */
     font-weight: 900;
-    color: #ffffff; /* Texto branco */
     text-transform: uppercase;
     white-space: nowrap;
-    z-index: 0; /* Joga o texto para TRÁS da sua foto */
+    z-index: 0; /* Fica atrás do DJ (que está no z-index: 1) */
     pointer-events: none; 
     letter-spacing: -2px;
+    
+    /* A MÁGICA DA COR: Divide o texto 50% Escuro e 50% Branco */
+    background: linear-gradient(to bottom, #0b0b13 50%, #ffffff 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 /* Responsividade para Celulares e Tablets */
@@ -233,9 +241,11 @@ section#inicio.hero {
         margin-right: auto;
     }
     
+    /* Garante que o corte no meio continue funcionando no celular */
     .hero-bottom-text {
-        font-size: 20vw; /* Ajusta o tamanho da fonte gigante no celular */
+        font-size: 22vw;
         bottom: 0;
+        transform: translateY(50%);
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

@@ -99,12 +99,12 @@ section#inicio.hero {
     min-height: 100vh; 
     display: flex; 
     align-items: center; 
-    padding-top: 140px !important; 
-    padding-bottom: 60px;
+    /* Adicionamos 10% nas laterais (Cima, Direita, Baixo, Esquerda) */
+    padding: 140px 10% 60px 10% !important; 
     position: relative; 
     overflow: hidden; 
     border-top: none !important; 
-    background-color: #FFD700; /* Fundo amarelo adicionado aqui */
+    background-color: #FFD700; 
 }
 
 .hero-bg-text { 
@@ -193,17 +193,19 @@ section#inicio.hero {
     position: relative; 
 }
 
-/* Foto do DJ */
+/* Foto do DJ limpa */
 .hero-image img {
     width: 100%;
-    max-width: 550px; /* Limite para a foto não ficar absurdamente gigante em telas enormes */
+    max-width: 550px; 
     height: auto;
     object-fit: contain;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     display: block;
+    /* Removidos: border-radius e box-shadow */
 }
-
+/* Efeito de Fusão desativado */
+.hero-image::after {
+    display: none; 
+}
 /* Responsividade para Celulares e Tablets (Garante que o texto fique em cima e a foto embaixo no celular) */
 @media (max-width: 992px) {
     .hero-content {

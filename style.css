@@ -98,46 +98,37 @@ nav {
 section#inicio.hero { 
     min-height: 100vh; 
     display: flex; 
-    align-items: center; 
-    /* Adicionamos 10% nas laterais (Cima, Direita, Baixo, Esquerda) */
-    padding: 140px 10% 60px 10% !important; 
+    align-items: stretch; /* Faz a área interna esticar do topo até o chão */
+    padding: 140px 10% 0 10% !important; /* O zero (0) aqui tira o espaço de baixo, colando a foto */
     position: relative; 
     overflow: hidden; 
     border-top: none !important; 
     background-color: #FFD700; 
 }
 
-.hero-bg-text { 
-    position: absolute; 
-    font-size: 20vw; 
-    font-weight: 900; 
-    color: rgba(0, 0, 0, 0.05); /* Texto de fundo agora é preto transparente */
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    white-space: nowrap; 
-    z-index: 0; 
-    pointer-events: none; 
-}
-
 .hero-content { 
     display: flex; 
-    align-items: center; 
+    align-items: stretch; /* Garante que texto e foto usem toda a altura disponível */
     justify-content: space-between; 
     gap: 40px; 
     width: 100%; 
     z-index: 1; 
 }
 
-/* Área de Texto */
+/* Área de Texto (Mantemos centralizada enquanto a foto desce) */
 .hero-text { 
     flex: 1;
     max-width: 50%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o texto verticalmente */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    padding-bottom: 60px; /* Devolve um pouco de respiro apenas para o bloco de texto */
 }
 
 .hero-text h2 { 
     font-size: 1rem; 
-    color: #333333; /* Texto escuro para contrastar com o amarelo */
+    color: #333333; 
     text-transform: uppercase; 
     letter-spacing: 3px; 
     margin-bottom: 15px; 
@@ -148,23 +139,24 @@ section#inicio.hero {
     font-weight: 700; 
     line-height: 1.1; 
     margin-bottom: 20px; 
-    color: #0b0b13; /* Texto escuro */
+    color: #0b0b13; 
 }
 
 .hero-text p { 
-    color: #222222; /* Texto escuro para boa leitura */
+    color: #222222; 
     margin-bottom: 35px; 
     font-size: 1.1rem; 
     line-height: 1.6;
     max-width: 90%; 
 }
+
 /* Botão CTA Invertido para o Fundo Amarelo */
 .btn { 
     display: inline-flex; 
     align-items: center; 
     gap: 10px; 
-    background: #0b0b13; /* Agora o fundo do botão é escuro */
-    color: #FFD700; /* O texto do botão agora é amarelo */
+    background: #0b0b13; 
+    color: #FFD700; 
     padding: 15px 35px; 
     text-decoration: none; 
     font-weight: 700; 
@@ -173,14 +165,14 @@ section#inicio.hero {
     font-size: 0.9rem;
     letter-spacing: 1px; 
     transition: all 0.3s ease; 
-    border: 2px solid #0b0b13; /* Borda escura */
+    border: 2px solid #0b0b13; 
 }
 
 .btn:hover { 
     background: transparent; 
-    color: #0b0b13; /* Ao passar o mouse, o texto fica escuro (vaza a cor do fundo) */
+    color: #0b0b13; 
     transform: translateY(-3px); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra escura */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
 }
 
 /* Container da Imagem */
@@ -188,7 +180,7 @@ section#inicio.hero {
     flex: 1;
     max-width: 50%; 
     display: flex; 
-    align-items: center; 
+    align-items: flex-end; /* A mágica acontece aqui: empurra a foto pro chão */
     justify-content: center; 
     position: relative; 
 }
@@ -200,18 +192,34 @@ section#inicio.hero {
     height: auto;
     object-fit: contain;
     display: block;
-    /* Removidos: border-radius e box-shadow */
 }
-/* Efeito de Fusão desativado */
-.hero-image::after {
-    display: none; 
+
+/* ===== NOVO: TEXTO GIGANTE DE FUNDO ===== */
+.hero-bottom-text {
+    position: absolute;
+    bottom: -4vw; /* Corta a base do texto de propósito */
+    left: 5%; /* Margem lateral */
+    font-size: 14vw; /* Tamanho gigante */
+    font-weight: 900;
+    color: #ffffff; /* Texto branco */
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 0; /* Joga o texto para TRÁS da sua foto */
+    pointer-events: none; 
+    letter-spacing: -2px;
 }
-/* Responsividade para Celulares e Tablets (Garante que o texto fique em cima e a foto embaixo no celular) */
+
+/* Responsividade para Celulares e Tablets */
 @media (max-width: 992px) {
     .hero-content {
         flex-direction: column-reverse;
         text-align: center;
         gap: 50px;
+    }
+    
+    .hero-text {
+        align-items: center; /* Centraliza tudo no celular */
+        padding-bottom: 0;
     }
 
     .hero-text, 
@@ -223,6 +231,11 @@ section#inicio.hero {
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .hero-bottom-text {
+        font-size: 20vw; /* Ajusta o tamanho da fonte gigante no celular */
+        bottom: 0;
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

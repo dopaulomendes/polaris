@@ -175,24 +175,21 @@ section#inicio.hero {
     display: block;
 }
 
-/* ===== TEXTO GIGANTE DE FUNDO (CORRIGIDO E CENTRALIZADO) ===== */
+/* ===== TEXTO GIGANTE DE FUNDO (CORRIGIDO) ===== */
 .hero-bottom-text {
     position: absolute;
     bottom: 0; 
-    left: 50%; /* Centraliza o eixo X */
-    transform: translate(-50%, 50%); /* Puxa para o meio exato e desce 50% */
+    left: 50%; 
+    transform: translate(-50%, 50%); 
     font-size: 15vw; 
     font-weight: 900;
     text-transform: uppercase;
     white-space: nowrap;
     z-index: 0; 
     pointer-events: none; 
-    letter-spacing: 5px; /* Aumentei um pouco o espaçamento para ficar mais elegante centralizado */
+    letter-spacing: 5px; 
     
-    /* 1. Cria a linha de contorno branco */
-    -webkit-text-stroke: 2px #ffffff;
-    
-    /* 2. Preenchimento: Topo Amarelo (tampa a marca d'água) e Base Branca */
+    /* CAMADA DA FRENTE: Recebe a cor para tampar o miolo do texto */
     background: linear-gradient(to bottom, #FFD700 50%, #ffffff 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -200,6 +197,16 @@ section#inicio.hero {
     color: transparent;
 }
 
+/* CAMADA DE TRÁS: Gera o contorno por trás da palavra */
+.hero-bottom-text::before {
+    content: attr(data-text); /* Puxa o texto "POLARIS" do HTML automaticamente */
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1; /* Joga essa camada para trás */
+    -webkit-text-stroke: 4px #ffffff; /* Borda um pouco mais grossa que sobra para fora */
+    color: transparent; 
+}
 /* Responsividade para manter o centro no celular */
 @media (max-width: 992px) {
     .hero-bottom-text {

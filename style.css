@@ -260,11 +260,11 @@ section#inicio.hero {
         transform: translateY(50%);
     }
 }
-/* Ajuste da Seção Seguinte (Sobre Mim) para não encavalar com o texto gigante */
+/* Ajuste Forçado da Seção Seguinte (Sobre Mim) */
 section#sobre {
-    padding-top: 160px; /* Empurra o conteúdo para baixo, dando espaço para a metade inferior da letra */
+    padding-top: 250px !important; /* Força o espaço extra para a letra gigante caber */
     position: relative;
-    z-index: 1; /* Garante que ela fique atrás do Hero, mas no fluxo correto */
+    z-index: 1; 
 }
 
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

@@ -25,33 +25,12 @@ body {
     position: relative; 
 }
 
-/* ===== MARCA D'ÁGUA NO FUNDO (SEU SÍMBOLO SEM FUNDO) ===== */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    /* Substitua pelo nome exato do seu arquivo caso seja diferente */
-    background-image: 
-        url('triangulo-sem-fundo.png'),
-        url('triangulo-sem-fundo.png'),
-        url('triangulo-sem-fundo.png');
-    background-position: 5% 15%, 85% 60%, 40% 90%;
-    background-size: 350px, 200px, 450px; 
-    background-repeat: no-repeat;
-    opacity: 0.05; /* Transparência sutil */
-    z-index: -1; 
-    pointer-events: none; 
-}
-
 /* Menu de Navegação Superior */
 nav { 
     position: fixed; 
     top: 0; 
     width: 100%; 
-    padding: 20px 5%; 
+    padding: 10px 5%; 
     background: rgba(11, 11, 19, 0.95); 
     backdrop-filter: blur(10px); 
     display: flex; 

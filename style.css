@@ -175,7 +175,20 @@ section#inicio.hero {
     display: block;
 }
 
-/* ===== TEXTO GIGANTE DE FUNDO (CORRIGIDO) ===== */
+/* ===== O GRADIENTE DISCRETO (Sobre a imagem, sob o texto) ===== */
+section#inicio.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Altura do esfumado */
+    background: linear-gradient(to top, #0b0b13 0%, transparent 100%);
+    z-index: 2; /* Fica na frente da foto (z-index 1) */
+    pointer-events: none;
+}
+
+/* ===== TEXTO GIGANTE DE FUNDO (CORRIGIDO E NA FRENTE) ===== */
 .hero-bottom-text {
     position: absolute;
     bottom: 0; 
@@ -185,11 +198,14 @@ section#inicio.hero {
     font-weight: 900;
     text-transform: uppercase;
     white-space: nowrap;
-    z-index: 0; 
+    z-index: 5; /* MÁGICA 1: Traz o texto para a FRENTE da imagem e do gradiente */
     pointer-events: none; 
     letter-spacing: 5px; 
     
-    /* CAMADA DA FRENTE: Recebe a cor para tampar o miolo do texto */
+    /* Remove o contorno dessa camada para ficar totalmente limpa */
+    -webkit-text-stroke: 0;
+    
+    /* Preenchimento: Topo Amarelo e Base Branca */
     background: linear-gradient(to bottom, #FFD700 50%, #ffffff 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -197,15 +213,20 @@ section#inicio.hero {
     color: transparent;
 }
 
-/* CAMADA DE TRÁS: Gera o contorno por trás da palavra */
+/* CAMADA DE TRÁS (Resolve o bug das linhas cruzadas) */
 .hero-bottom-text::before {
-    content: attr(data-text); /* Puxa o texto "POLARIS" do HTML automaticamente */
+    content: attr(data-text); 
     position: absolute;
-    left: 0;
+    left: 0; 
     top: 0;
-    z-index: -1; /* Joga essa camada para trás */
-    -webkit-text-stroke: 4px #ffffff; /* Borda um pouco mais grossa que sobra para fora */
-    color: transparent; 
+    z-index: -1; 
+    
+    /* MÁGICA 2: Borda branca mais grossa + preenchimento totalmente branco. 
+       Isso funde tudo num bloco só e esconde os traços internos cruzados! */
+    -webkit-text-stroke: 6px #ffffff; 
+    -webkit-text-fill-color: #ffffff; /* Força o branco sólido por trás */
+    color: #ffffff;
+    background: none;
 }
 /* Responsividade para manter o centro no celular */
 @media (max-width: 992px) {

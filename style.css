@@ -188,24 +188,10 @@ section#inicio.hero::after {
     pointer-events: none;
 }
 
-/* ===== TEXTO GIGANTE DE FUNDO (CORRIGIDO E NA FRENTE) ===== */
-.hero-bottom-text {
-    position: absolute;
-    bottom: 0; 
-    left: 50%; 
-    transform: translate(-50%, 50%); 
-    font-size: 15vw; 
-    font-weight: 900;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 5; /* MÁGICA 1: Traz o texto para a FRENTE da imagem e do gradiente */
-    pointer-events: none; 
-    letter-spacing: 5px; 
-    
-    /* Remove o contorno dessa camada para ficar totalmente limpa */
-    -webkit-text-stroke: 0;
-    
-    /* Preenchimento: Topo Amarelo e Base Branca */
+/* ===== TEXTO GIGANTE (CORRIGIDO: VAZADO, MAIS ALTO E CENTRALIZADO) ===== */
+/* Aplicamos a cor idêntica ao fundo na parte de cima para criar a ilusão de vazado perfeito */
+.hero-bottom-text,
+.hero-bottom-text::before {
     background: linear-gradient(to bottom, #FFD700 50%, #ffffff 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -213,27 +199,41 @@ section#inicio.hero::after {
     color: transparent;
 }
 
-/* CAMADA DE TRÁS (Resolve o bug das linhas cruzadas) */
+.hero-bottom-text {
+    position: absolute;
+    bottom: 15px; /* Subimos os 15px que você pediu */
+    left: 0;      /* Fix do celular: Inicia no canto esquerdo... */
+    width: 100%;  /* ...ocupa a tela toda... */
+    text-align: center; /* ...e centraliza o texto certinho! */
+    transform: translateY(50%); /* Move apenas no eixo Y (para baixo) */
+    font-size: 15vw; 
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 5; /* Texto na FRENTE da imagem */
+    pointer-events: none; 
+    letter-spacing: 5px; 
+    -webkit-text-stroke: 0; /* Camada da frente sem contorno */
+}
+
+/* CAMADA DE TRÁS (Gera o contorno e esconde o cruzamento das linhas) */
 .hero-bottom-text::before {
     content: attr(data-text); 
     position: absolute;
     left: 0; 
     top: 0;
-    z-index: -1; 
-    
-    /* MÁGICA 2: Borda branca mais grossa + preenchimento totalmente branco. 
-       Isso funde tudo num bloco só e esconde os traços internos cruzados! */
-    -webkit-text-stroke: 6px #ffffff; 
-    -webkit-text-fill-color: #ffffff; /* Força o branco sólido por trás */
-    color: #ffffff;
-    background: none;
+    width: 100%;
+    text-align: center;
+    z-index: -1; /* Fica atrás da camada principal da letra */
+    -webkit-text-stroke: 4px #ffffff; /* Contorno branco limpo */
 }
-/* Responsividade para manter o centro no celular */
+
+/* Responsividade corrigida para o celular */
 @media (max-width: 992px) {
     .hero-bottom-text {
-        font-size: 22vw;
-        bottom: 0;
-        transform: translate(-50%, 50%);
+        font-size: 24vw; /* Letra ajustada para caber bem na tela em pé */
+        bottom: 15px; /* Mantém a altura subida */
+        transform: translateY(50%); /* Removemos o translateX que estava jogando o texto pro lado */
     }
 }
 /* Responsividade para Celulares e Tablets */

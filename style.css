@@ -253,26 +253,26 @@ section#sobre {
 /* Container Principal da Seção Sobre */
 .about-grid {
     display: grid;
-    /* A MÁGICA ESTÁ AQUI: minmax(0, 1fr) impede que a foto exploda o tamanho da página */
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
     gap: 60px;
-    align-items: center; /* Centraliza a foto com o texto para ficar elegante */
+    align-items: flex-start; /* 🚀 A MÁGICA: Joga o texto para o topo, logo abaixo do título! */
 }
 
 /* Container da Foto */
 .about-img {
     width: 100%;
     max-width: 100%;
+    aspect-ratio: 4/5; /* Cria uma proporção de "retrato" elegante, limitando a altura da foto */
     border-radius: 20px;
-    overflow: hidden; /* Corta qualquer coisa que vazar */
+    overflow: hidden; 
     display: flex;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* Uma sombra leve para dar destaque */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
 }
 
 /* A Foto em si */
 .about-img img {
     width: 100%;
-    height: auto;
+    height: 100%; /* Força a foto a preencher a proporção que definimos acima */
     object-fit: cover;
     display: block;
 }
@@ -280,7 +280,7 @@ section#sobre {
 /* Responsividade: No celular, o texto fica em cima e a foto embaixo */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: 1fr; /* Muda para 1 coluna só */
+        grid-template-columns: 1fr; 
         gap: 40px;
     }
 }

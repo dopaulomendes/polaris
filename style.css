@@ -251,29 +251,46 @@ section#sobre {
     z-index: 1; 
 }
 
-/* 2. Container da Foto (Tamanho controlado e centralizado) */
+/* Container Principal da Seção Sobre (A Mágica das Colunas) */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Cria 2 colunas iguais: 1 para o texto, 1 para a foto */
+    gap: 60px;
+    align-items: center; /* Deixa o texto alinhado elegantemente no meio da foto */
+}
+
+/* Garante que o texto fique bem distribuído na sua coluna (Esquerda) */
+.about-text {
+    width: 100%;
+}
+
+/* Container da Foto (Direita) */
 .about-img {
     width: 100%;
-    max-width: 400px; /* Limite do tamanho da foto (ajuste se quiser maior ou menor) */
-    margin: 0 auto; /* Centraliza a foto na coluna da direita */
+    max-width: 450px; /* Mantém a foto com um tamanho bonito e contido */
+    margin-left: auto; /* Empurra a foto levemente para o lado direito da coluna dela */
     border-radius: 20px;
     display: flex;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
-    /* Removemos o aspect-ratio e o overflow: hidden para não forçar cortes */
 }
 
-/* 3. A Foto em si (Encolhe de forma natural, sem cortar nada) */
+/* A Foto em si (Inteira, sem cortes) */
 .about-img img {
     width: 100%;
-    height: auto; /* Mantém a proporção original da sua câmera, sem cortes */
+    height: auto;
     display: block;
-    border-radius: 20px; /* Garante que as bordas arredondadas fiquem na própria foto */
+    border-radius: 20px;
 }
-/* Responsividade: No celular, o texto fica em cima e a foto embaixo */
+
+/* Responsividade para Celulares (Volta a empilhar um em cima do outro) */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* Muda para 1 coluna só no celular */
         gap: 40px;
+    }
+    
+    .about-img {
+        margin: 0 auto; /* Centraliza a foto no celular */
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

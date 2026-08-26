@@ -251,12 +251,12 @@ section#sobre {
     z-index: 1; 
 }
 
-/* Container Principal da Seção Sobre (A Mágica das Colunas) */
+/* Container Principal da Seção Sobre */
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Cria 2 colunas iguais: 1 para o texto, 1 para a foto */
+    grid-template-columns: 1fr 1fr; 
     gap: 60px;
-    align-items: center; /* Deixa o texto alinhado elegantemente no meio da foto */
+    align-items: flex-start; /* 🚀 A MÁGICA 1: Joga o texto para o topo, grudando no título! */
 }
 
 /* Garante que o texto fique bem distribuído na sua coluna (Esquerda) */
@@ -267,8 +267,8 @@ section#sobre {
 /* Container da Foto (Direita) */
 .about-img {
     width: 100%;
-    max-width: 450px; /* Mantém a foto com um tamanho bonito e contido */
-    margin-left: auto; /* Empurra a foto levemente para o lado direito da coluna dela */
+    max-width: 350px; /* 🚀 A MÁGICA 2: Diminuímos para encolher a foto proporcionalmente ao texto */
+    margin-left: auto; /* Empurra a foto levemente para o lado direito */
     border-radius: 20px;
     display: flex;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
@@ -285,12 +285,12 @@ section#sobre {
 /* Responsividade para Celulares (Volta a empilhar um em cima do outro) */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: 1fr; /* Muda para 1 coluna só no celular */
+        grid-template-columns: 1fr; 
         gap: 40px;
     }
     
     .about-img {
-        margin: 0 auto; /* Centraliza a foto no celular */
+        margin: 0 auto; 
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

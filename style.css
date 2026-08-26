@@ -254,27 +254,33 @@ section#sobre {
 /* Container Principal da Seção Sobre */
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 60px;
-    align-items: flex-start; /* 🚀 A MÁGICA 1: Joga o texto para o topo, grudando no título! */
+    /* 🚀 A MÁGICA 1: O 'auto' faz a coluna da foto ter apenas o tamanho dela (350px), e o '1fr' faz o texto preencher o resto, aproximando os dois! */
+    grid-template-columns: 1fr auto; 
+    gap: 60px; /* Esse é o espaço exato e fixo que vai ficar entre o texto e a foto */
+    align-items: flex-start; 
 }
 
-/* Garante que o texto fique bem distribuído na sua coluna (Esquerda) */
+/* Container do Texto */
 .about-text {
     width: 100%;
+    max-width: 650px; /* Limita a largura do texto para as linhas não ficarem longas e cansativas de ler */
 }
 
-/* Container da Foto (Direita) */
+/* 🚀 A MÁGICA 2: Remove a margem invisível do primeiro parágrafo, grudando ele no espaçamento correto do título */
+.about-text p:first-child {
+    margin-top: 0;
+}
+
+/* Container da Foto */
 .about-img {
-    width: 100%;
-    max-width: 350px; /* 🚀 A MÁGICA 2: Diminuímos para encolher a foto proporcionalmente ao texto */
-    margin-left: auto; /* Empurra a foto levemente para o lado direito */
+    width: 350px; /* Fixamos o tamanho em 350px */
     border-radius: 20px;
     display: flex;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
+    /* Removemos o margin-left: auto para ela não fugir lá pro canto da tela! */
 }
 
-/* A Foto em si (Inteira, sem cortes) */
+/* A Foto em si */
 .about-img img {
     width: 100%;
     height: auto;
@@ -282,7 +288,7 @@ section#sobre {
     border-radius: 20px;
 }
 
-/* Responsividade para Celulares (Volta a empilhar um em cima do outro) */
+/* Responsividade para Celulares */
 @media (max-width: 992px) {
     .about-grid {
         grid-template-columns: 1fr; 
@@ -290,7 +296,9 @@ section#sobre {
     }
     
     .about-img {
-        margin: 0 auto; 
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto; /* No celular ela volta a ficar no centro */
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

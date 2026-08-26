@@ -258,11 +258,12 @@ section#sobre {
     align-items: flex-start; /* 🚀 A MÁGICA: Joga o texto para o topo, logo abaixo do título! */
 }
 
-/* Container da Foto */
+/* Container da Foto - Tamanho Controlado */
 .about-img {
     width: 100%;
-    max-width: 100%;
-    aspect-ratio: 4/5; /* Cria uma proporção de "retrato" elegante, limitando a altura da foto */
+    max-width: 450px; /* 🚀 MÁGICA: Limita o tamanho para não virar um pôster de cinema no PC */
+    margin: 0 auto; /* Centraliza a foto perfeitamente na coluna da direita */
+    aspect-ratio: 4/5; /* Mantém o formato "retrato" elegante */
     border-radius: 20px;
     overflow: hidden; 
     display: flex;

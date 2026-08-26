@@ -182,62 +182,35 @@ section#inicio.hero::after {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 90px; /* Altura do esfumado */
+    height: 70px; /* Altura do esfumado */
     background: linear-gradient(to top, #0b0b13 0%, transparent 100%);
     z-index: 2; /* Fica na frente da foto (z-index 1) */
     pointer-events: none;
 }
 
-/* ===== TEXTO GIGANTE (CORRIGIDO: VAZADO, MAIS ALTO E CENTRALIZADO) ===== */
-/* Aplicamos a cor idêntica ao fundo na parte de cima para criar a ilusão de vazado perfeito */
-.hero-bottom-text,
-.hero-bottom-text::before {
-    background: linear-gradient(to bottom, #FFD700 50%, #ffffff 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-
-.hero-bottom-text {
+/* ===== TEXTO GIGANTE EM IMAGEM ===== */
+.hero-bottom-logo {
     position: absolute;
-    bottom: 15px; /* Subimos os 15px que você pediu */
-    left: 0;      /* Fix do celular: Inicia no canto esquerdo... */
-    width: 100%;  /* ...ocupa a tela toda... */
-    text-align: center; /* ...e centraliza o texto certinho! */
-    transform: translateY(50%); /* Move apenas no eixo Y (para baixo) */
-    font-size: 15vw; 
-    font-weight: 900;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 5; /* Texto na FRENTE da imagem */
-    pointer-events: none; 
-    letter-spacing: 5px; 
-    -webkit-text-stroke: 0; /* Camada da frente sem contorno */
-}
-
-/* CAMADA DE TRÁS (Gera o contorno e esconde o cruzamento das linhas) */
-.hero-bottom-text::before {
-    content: attr(data-text); 
-    position: absolute;
-    left: 0; 
-    top: 0;
+    bottom: 15px; /* Altura subidinha */
+    left: 0;
     width: 100%;
     text-align: center;
-    z-index: -1; /* Fica atrás da camada principal da letra */
-    -webkit-text-stroke: 4px #ffffff; /* Contorno branco limpo */
+    transform: translateY(50%); 
+    z-index: 5; /* Fica na frente da foto do DJ */
+    pointer-events: none; 
 }
 
-/* Responsividade corrigida para o celular */
-@media (max-width: 992px) {
-    .hero-bottom-text {
-        font-size: 24vw; /* Letra ajustada para caber bem na tela em pé */
-        bottom: 15px; /* Mantém a altura subida */
-        transform: translateY(50%); /* Removemos o translateX que estava jogando o texto pro lado */
-    }
+/* Tamanho da Imagem */
+.hero-bottom-logo img {
+    width: 85%; /* Ocupa 85% da tela no PC */
+    max-width: 1200px; /* Limite máximo em telas gigantes */
+    height: auto;
+    display: inline-block;
 }
-/* Responsividade para Celulares e Tablets */
+
+/* Responsividade para Celulares e Tablets (Hero + Logo em Imagem) */
 @media (max-width: 992px) {
+    /* Organiza o texto e a foto do DJ no celular */
     .hero-content {
         flex-direction: column-reverse;
         text-align: center;
@@ -245,7 +218,7 @@ section#inicio.hero::after {
     }
     
     .hero-text {
-        align-items: center; /* Centraliza tudo no celular */
+        align-items: center; 
         padding-bottom: 0;
     }
 
@@ -260,11 +233,14 @@ section#inicio.hero::after {
         margin-right: auto;
     }
     
-    /* Garante que o corte no meio continue funcionando no celular */
-    .hero-bottom-text {
-        font-size: 22vw;
-        bottom: 0;
+    /* Ajusta a Logo em Imagem no celular */
+    .hero-bottom-logo {
+        bottom: 15px; 
         transform: translateY(50%);
+    }
+    
+    .hero-bottom-logo img {
+        width: 95%; /* Fica maiorzinha no celular para leitura fácil */
     }
 }
 /* Ajuste Forçado da Seção Seguinte (Sobre Mim) */

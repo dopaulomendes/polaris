@@ -245,18 +245,44 @@ section#inicio.hero::after {
 }
 /* Ajuste Forçado da Seção Seguinte (Sobre Mim) */
 section#sobre {
-    padding-top: 250px !important; /* Força o espaço extra para a letra gigante caber */
+    padding-top: 250px !important; 
     position: relative;
     z-index: 1; 
 }
-/* Limita o tamanho da foto do Sobre Mim para não quebrar o site */
-.about-img img {
+
+/* Container Principal da Seção Sobre */
+.about-grid {
+    display: grid;
+    /* A MÁGICA ESTÁ AQUI: minmax(0, 1fr) impede que a foto exploda o tamanho da página */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
+    gap: 60px;
+    align-items: center; /* Centraliza a foto com o texto para ficar elegante */
+}
+
+/* Container da Foto */
+.about-img {
     width: 100%;
     max-width: 100%;
-    height: 100%;
-    object-fit: cover; /* Preenche o quadrado perfeitamente sem "amassar" a sua foto */
-    border-radius: 20px; /* Mantém as bordas arredondadas caso vazem */
+    border-radius: 20px;
+    overflow: hidden; /* Corta qualquer coisa que vazar */
+    display: flex;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* Uma sombra leve para dar destaque */
+}
+
+/* A Foto em si */
+.about-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     display: block;
+}
+
+/* Responsividade: No celular, o texto fica em cima e a foto embaixo */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* Muda para 1 coluna só */
+        gap: 40px;
+    }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */
 .audio-grid { 

@@ -458,6 +458,17 @@ section#sobre {
     /* Se quiser que o texto "Últimos Eventos" fique no meio da tela, descomente a linha abaixo: */
     /* text-align: center; */
 }
+/* =======================================================
+   4. ALINHAMENTO DOS SUBTÍTULOS (Textos descritivos)
+   ======================================================= */
+/* O sinal ">" garante que isso afete apenas os textos soltos das seções de Vídeo, Áudio e Galeria */
+section > p {
+    width: 100%;
+    max-width: 1200px; /* O mesmo limite dos vídeos e títulos */
+    margin: 0 auto 40px auto; /* Centraliza o bloco de texto acompanhando o resto */
+    font-size: 1.1rem;
+    color: var(--text-muted); /* Deixa a cor um pouco mais suave para dar contraste com o título */
+}
 /* ===== RESPONSIVIDADE (Tablets e Celulares) ===== */
 @media (max-width: 992px) {
     .hero-content, .about-grid { 

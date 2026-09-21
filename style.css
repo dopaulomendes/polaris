@@ -254,30 +254,28 @@ section#sobre {
 /* Container Principal da Seção Sobre */
 .about-grid {
     display: grid;
-    /* 🚀 A MÁGICA 1: O 'auto' faz a coluna da foto ter apenas o tamanho dela (350px), e o '1fr' faz o texto preencher o resto, aproximando os dois! */
-    grid-template-columns: 1fr auto; 
-    gap: 60px; /* Esse é o espaço exato e fixo que vai ficar entre o texto e a foto */
+    /* A MÁGICA: A coluna da esquerda fica com o espaço livre (1fr) e a da direita tem exatamente 350px */
+    grid-template-columns: 1fr 350px; 
+    gap: 60px; 
     align-items: flex-start; 
 }
 
 /* Container do Texto */
 .about-text {
     width: 100%;
-    max-width: 650px; /* Limita a largura do texto para as linhas não ficarem longas e cansativas de ler */
+    max-width: 650px; 
 }
 
-/* 🚀 A MÁGICA 2: Remove a margem invisível do primeiro parágrafo, grudando ele no espaçamento correto do título */
 .about-text p:first-child {
     margin-top: 0;
 }
 
 /* Container da Foto */
 .about-img {
-    width: 350px; /* Fixamos o tamanho em 350px */
+    width: 100%; /* Preenche exatamente os 350px da coluna do grid */
     border-radius: 20px;
     display: flex;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
-    /* Removemos o margin-left: auto para ela não fugir lá pro canto da tela! */
 }
 
 /* A Foto em si */
@@ -288,17 +286,16 @@ section#sobre {
     border-radius: 20px;
 }
 
-/* Responsividade para Celulares */
+/* Responsividade para Ecrãs Menores (Telemóveis) */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* Colapsa para 1 coluna */
         gap: 40px;
     }
     
     .about-img {
-        width: 100%;
         max-width: 350px;
-        margin: 0 auto; /* No celular ela volta a ficar no centro */
+        margin: 0 auto; 
     }
 }
 /* Seção Áudio - Organizados em 1 coluna (empilhados) */

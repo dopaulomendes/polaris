@@ -471,22 +471,46 @@ section > p {
 }
 /* ===== RESPONSIVIDADE (Tablets e Celulares) ===== */
 @media (max-width: 992px) {
-    .hero-content, .about-grid { 
+    /* 1. Dá uma margem bem maior no topo para o Hero respirar no celular */
+    section#inicio.hero {
+        padding-top: 160px !important; 
+    }
+
+    /* 2. O 'justify-content: center' cancela o afastamento e junta o texto e a foto no meio! */
+    .hero-content { 
         flex-direction: column; 
         text-align: center; 
+        justify-content: center; 
+        align-items: center;
+        gap: 30px; 
+    }
+    
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px;
     }
     
     .hero-text { 
         max-width: 100%; 
-        margin-bottom: 50px; 
+        margin-bottom: 0; 
+        align-items: center; 
     }
     
     .hero-text h1 {
         font-size: 2.5rem;
     }
     
+    /* Centraliza perfeitamente o parágrafo no celular */
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Evita que a foto do DJ fique colossal num tablet */
     .hero-image { 
         width: 100%; 
+        max-width: 450px;
+        margin: 0 auto;
     }
     
     .section-title { 

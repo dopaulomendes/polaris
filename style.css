@@ -421,7 +421,43 @@ footer {
     font-size: 0.85rem; 
     margin-top: 50px; 
 }
+/* =======================================================
+   1. REGRA UNIVERSAL DE ALINHAMENTO (MONITORES GRANDES)
+   ======================================================= */
+.hero-content, 
+.about-grid, 
+.gallery-grid {
+    width: 100%;
+    max-width: 1200px; /* O "teto" de crescimento. Pode subir para 1400px se preferir mais largo no PC */
+    margin: 0 auto; /* A mágica que centraliza os blocos na tela */
+}
 
+/* =======================================================
+   2. PROTEÇÃO DAS BORDAS LATERAIS EM TODAS AS SEÇÕES
+   ======================================================= */
+/* Isso garante que Galeria, Vídeos e Áudios nunca colem nos cantos */
+section {
+    padding: 80px 5%; 
+}
+
+/* Mantemos as exceções que já tínhamos ajustado antes: */
+section#inicio.hero {
+    padding: 100px 5% 0 5% !important;
+}
+section#sobre {
+    padding: 250px 5% 100px 5% !important;
+}
+
+/* =======================================================
+   3. ALINHAMENTO DOS TÍTULOS DAS SEÇÕES
+   ======================================================= */
+.section-title {
+    width: 100%;
+    max-width: 1200px; /* Acompanha o mesmo limite do grid */
+    margin: 0 auto 40px auto; /* Centraliza o bloco do título */
+    /* Se quiser que o texto "Últimos Eventos" fique no meio da tela, descomente a linha abaixo: */
+    /* text-align: center; */
+}
 /* ===== RESPONSIVIDADE (Tablets e Celulares) ===== */
 @media (max-width: 992px) {
     .hero-content, .about-grid { 

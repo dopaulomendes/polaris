@@ -368,7 +368,17 @@ section#sobre {
     border: 1px solid var(--primary); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
 }
-
+/* =======================================================
+   MÁGICA DAS IMAGENS DA GALERIA
+   ======================================================= */
+/* Essa regra diz para as fotos respeitarem o tamanho do quadrado da galeria */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta as rebarbas perfeitamente sem amassar a foto */
+    display: block;
+    transition: transform 0.4s ease; /* Faz um efeitinho suave se quiser dar zoom depois */
+}
 /* Rodapé / Contato */
 footer { 
     padding: 100px 10%; 
